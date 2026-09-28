@@ -1,0 +1,8 @@
+pandas>=2.2
+numpy>=1.26
+scikit-learn>=1.6,<1.9
+joblib>=1.4
+sqlalchemy>=2.0
+pymysql>=1.1
+matplotlib>=3.8
+pytest>=8.0

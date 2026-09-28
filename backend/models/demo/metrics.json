@@ -1,0 +1,168 @@
+{
+  "model_card": {
+    "version": "demo-synthetic-1",
+    "data_source": "SYNTHETIC_DEMO",
+    "is_synthetic": true,
+    "target": "task not finished by its deadline",
+    "warning": "Trained on synthetic data generated from a hand-written rule. Metrics are NOT evidence of real-world accuracy. Train on TAWOS with ml/train.py.",
+    "generating_rule": "logit = -3.0 + 0.16*story_points + 0.85*open_blockers + 0.07*assignee_open_points + 1.6*elapsed_frac - 0.05*min(days_to_deadline, 20) + 2.2*(assignee_hist_late_rate-0.3) + 0.35*is_bug + 0.25*reassign_count + 0.6*is_unassigned + noise(sd=0.6)",
+    "algorithm": "logistic_regression",
+    "calibration": "isotonic",
+    "trained_at": "2026-09-28T10:18:15+00:00",
+    "n_rows": 8591,
+    "n_train": 6009,
+    "n_valid": 1283,
+    "n_test": 1299
+  },
+  "model_comparison_validation": {
+    "heuristic_baseline": {
+      "valid_pr_auc": 0.47906462418167073,
+      "valid_roc_auc": 0.6926476326191324,
+      "valid_brier": 0.19385814497272022
+    },
+    "logistic_regression": {
+      "valid_pr_auc": 0.6087087273022568,
+      "valid_roc_auc": 0.7459016856950594,
+      "valid_brier": 0.206780459846103
+    },
+    "random_forest": {
+      "valid_pr_auc": 0.5692080796165571,
+      "valid_roc_auc": 0.733065295943814,
+      "valid_brier": 0.2064262275870571
+    },
+    "gradient_boosting": {
+      "valid_pr_auc": 0.5654151260930877,
+      "valid_roc_auc": 0.7250976866224461,
+      "valid_brier": 0.18480429193124903
+    }
+  },
+  "test": {
+    "selected_model": {
+      "n": 1299,
+      "late_rate": 0.3279445727482679,
+      "roc_auc": 0.7497660648887599,
+      "pr_auc": 0.5804806416663265,
+      "brier": 0.18350378596725467,
+      "threshold": 0.558,
+      "precision": 0.6614583333333334,
+      "recall": 0.2981220657276995,
+      "f1": 0.4110032362459547,
+      "accuracy": 0.7197844495765974,
+      "confusion_matrix": {
+        "tn": 808,
+        "fp": 65,
+        "fn": 299,
+        "tp": 127
+      }
+    },
+    "selected_model_uncalibrated_brier": 0.20292557753196439,
+    "heuristic_baseline": {
+      "n": 1299,
+      "late_rate": 0.3279445727482679,
+      "roc_auc": 0.6740154558507978,
+      "pr_auc": 0.4632209525011523,
+      "brier": 0.20468052347959972,
+      "threshold": 0.6,
+      "precision": 0.6024844720496895,
+      "recall": 0.22769953051643194,
+      "f1": 0.33049403747870526,
+      "accuracy": 0.6974595842956121,
+      "confusion_matrix": {
+        "tn": 809,
+        "fp": 64,
+        "fn": 329,
+        "tp": 97
+      }
+    },
+    "majority_class_accuracy": 0.6720554272517321,
+    "calibration_curve": {
+      "mean_predicted": [
+        0.0659,
+        0.1683,
+        0.1855,
+        0.3361,
+        0.3453,
+        0.4614,
+        0.7184
+      ],
+      "observed_late_rate": [
+        0.066,
+        0.156,
+        0.3077,
+        0.3562,
+        0.4651,
+        0.4641,
+        0.7292
+      ]
+    }
+  },
+  "thresholds": {
+    "high": 0.558,
+    "medium": 0.186
+  },
+  "global_importance": {
+    "assignee_open_points": 0.08224132528906486,
+    "story_points": 0.06837256426556114,
+    "elapsed_frac": 0.06669595340298079,
+    "open_blockers": 0.047037248328418095,
+    "assignee_hist_late_rate": 0.039612648358892256,
+    "assignee_open_count": 0.03566161909937648,
+    "days_to_deadline": 0.029845867942533546,
+    "is_bug": 0.015169556457070731,
+    "reassign_count": 0.009441537154054797,
+    "age_days": 0.007141652002975461,
+    "is_unassigned": 0.0048976300859362824,
+    "window_days": 0.0026005967099934496,
+    "desc_len_log": 0.0025457100787165785,
+    "project_hist_late_rate": 0.0022547331388899127,
+    "priority_rank": 0.0018416027815907157
+  },
+  "leave_project_out": {
+    "per_project": [
+      {
+        "project": "3",
+        "n": 1377,
+        "pr_auc": 0.6487226399949548,
+        "roc_auc": 0.758942700431789,
+        "late_rate": 0.3449527959331881
+      },
+      {
+        "project": "2",
+        "n": 1347,
+        "pr_auc": 0.589979964825464,
+        "roc_auc": 0.7353220490475392,
+        "late_rate": 0.3184855233853007
+      },
+      {
+        "project": "5",
+        "n": 1445,
+        "pr_auc": 0.6132754134930052,
+        "roc_auc": 0.7527414761098401,
+        "late_rate": 0.33356401384083045
+      },
+      {
+        "project": "1",
+        "n": 1478,
+        "pr_auc": 0.587805187369241,
+        "roc_auc": 0.7328723055487256,
+        "late_rate": 0.33694181326116374
+      },
+      {
+        "project": "4",
+        "n": 1390,
+        "pr_auc": 0.5627665858413077,
+        "roc_auc": 0.7367085451091699,
+        "late_rate": 0.3043165467625899
+      },
+      {
+        "project": "0",
+        "n": 1554,
+        "pr_auc": 0.5960760509756152,
+        "roc_auc": 0.7425674276161027,
+        "late_rate": 0.3384813384813385
+      }
+    ],
+    "mean_pr_auc": 0.5997709737499314,
+    "mean_roc_auc": 0.7431924173105277
+  }
+}
