@@ -2,6 +2,8 @@
 
 > *AI Based Project Management and Team Productivity System* — final-year B.E. project prototype.
 
+[**Try the live Foresight demo →**](https://foresight-kazii.vercel.app/)
+
 Most project tools tell you **what is happening**. Foresight also estimates **what is likely to happen next and why**:
 it predicts which tasks will miss their deadline, explains each prediction in plain language, scores project health
 with a documented formula, detects workload imbalance, and recommends concrete actions — simulating each action with
@@ -130,49 +132,26 @@ docs/              ANALYSIS · ML · DATABASE · API · DEMO · ROADMAP
 
 ## Public capstone demo deployment
 
-**The public demo is not deployed yet.** After Vercel assigns the frontend URL, replace this line with
-`[Open the Foresight demo](https://<your-vercel-domain>)`.
+**The public demo is live:** [open Foresight](https://foresight-kazii.vercel.app/). Its API is hosted on Render at
+`https://foresight-api-7d67.onrender.com`; the [API health check](https://foresight-api-7d67.onrender.com/api/health)
+reports whether the service is responding.
 
-The public database is intended to start with only the app-generated **Atlas Mobile Launch** synthetic demo project
-and its demo users. Do not enter personal, private, or real project data. The shared demo account is mutable: visitors
-can change the sample project, and changes are visible to everyone using that account. Demo credentials are
+The live project and its data are synthetic; they are not real project data and are never used for training or metrics.
+Do not enter personal, private, or real project data. The shared demo account is mutable: visitors can change the
+sample project, and changes are visible to everyone using that account. Demo credentials are
 **priya@demo.foresight / demo1234** (manager); rahul, aisha, karan, meera, and dev use the same password.
 
-The deployment files are `render.yaml` (Render API + PostgreSQL) and `frontend/vercel.json` (React SPA fallback).
-The source repository must be available to Vercel and Render through a connected Git provider; this setup does not
-publish or deploy the current folder.
+The deployment is currently live and can be updated or redeployed in the future. Its configuration is in `render.yaml`
+(Render API + PostgreSQL) and `frontend/vercel.json` (React SPA fallback); the source repository is connected to Vercel
+and Render.
 
-### 1. Deploy the frontend once to get its public URL
+### Deployment configuration
 
-1. In Vercel, select **Add New... → Project**, import the repository, and set **Root Directory** to `frontend`.
-2. Keep the detected Vite settings: install `npm install`, build `npm run build`, output directory `dist`.
-3. Do not add `VITE_API_URL` yet. Select **Deploy** and copy the assigned production URL (for example,
-   `https://foresight-demo.vercel.app`). The UI can load at this point, but its API will not work until the next steps.
-
-### 2. Deploy the API and database on Render
-
-1. In Render, select **New + → Blueprint**, connect the same repository, and deploy the `render.yaml` Blueprint.
-2. When prompted for `CORS_ORIGINS`, enter the exact Vercel origin copied above, with no trailing slash or path,
-   such as `https://foresight-demo.vercel.app`. This is an environment value, not a committed URL.
-3. The Blueprint creates a Docker web service and PostgreSQL database in Oregon. It generates `JWT_SECRET`
-   automatically and links `DATABASE_URL` to the database's internal connection string; do not manually set or
-   expose either value.
-4. After the service is live, copy its `onrender.com` service URL. Check
-   `https://<your-render-service>.onrender.com/api/health` for `{"status":"ok",...}`. The container seeds the one
-   synthetic demo project on startup if it is missing.
-
-### 3. Connect Vercel to the Render API
-
-1. In Vercel, open the project **Settings → Environment Variables** and add `VITE_API_URL` for **Production**.
-   Set its value to the Render service origin only, e.g. `https://foresight-api-xxxx.onrender.com` (no `/api` and no
-   trailing slash).
-2. Redeploy the latest production deployment so Vite embeds the new value. Confirm the app can sign in and load
-   the demo project.
-3. Replace the not-deployed notice near the top of this section with a link to the final Vercel URL.
-
-If the Vercel domain changes, update Render's **CORS_ORIGINS** to the new exact origin and redeploy/restart the API.
-For local development, leave `VITE_API_URL` unset; the frontend continues to call relative `/api` paths through the
-Vite development proxy.
+The Vercel frontend uses the `frontend` directory and the Render API origin as its production `VITE_API_URL`.
+If you change either deployment or its domain, update `VITE_API_URL` in Vercel and Render's `CORS_ORIGINS` to the
+exact frontend origin (no path or trailing slash), then redeploy/restart the affected service. The Render Blueprint
+manages the PostgreSQL database and generates `JWT_SECRET`; do not expose these values. For local development, leave
+`VITE_API_URL` unset so the Vite development proxy handles `/api` requests.
 
 The free Render PostgreSQL plan is suitable for a short capstone demo, not long-term storage; check Render's current
 free-database lifecycle and retention limits before relying on it.
