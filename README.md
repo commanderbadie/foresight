@@ -1,6 +1,6 @@
 # Foresight — Predictive Project Intelligence
 
-> *AI Based Project Management and Team Productivity System* — final-year B.E. project prototype.
+> *AI Based Project Management and Team Productivity System* — an internship project.
 
 [**Try the live Foresight demo →**](https://foresight-kazii.vercel.app/)
 
@@ -139,7 +139,7 @@ docs/              ANALYSIS · ML · DATABASE · API · DEMO · ROADMAP
 - [docs/DEMO.md](docs/DEMO.md) — 5-minute demo script
 - [docs/ROADMAP.md](docs/ROADMAP.md) — milestones, status and definition of done
 
-## Public capstone demo deployment
+## Public demo deployment
 
 **The public demo is live:** [open Foresight](https://foresight-kazii.vercel.app/). Its API is hosted on Render at
 `https://foresight-api-7d67.onrender.com`; the [API health check](https://foresight-api-7d67.onrender.com/api/health)
@@ -162,7 +162,7 @@ exact frontend origin (no path or trailing slash), then redeploy/restart the aff
 manages the PostgreSQL database and generates `JWT_SECRET`; do not expose these values. For local development, leave
 `VITE_API_URL` unset so the Vite development proxy handles `/api` requests.
 
-The free Render PostgreSQL plan is suitable for a short capstone demo, not long-term storage; check Render's current
+The free Render PostgreSQL plan is suitable for a short internship project demo, not long-term storage; check Render's current
 free-database lifecycle and retention limits before relying on it.
 
 ## Honest limitations
