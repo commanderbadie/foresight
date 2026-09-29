@@ -4,6 +4,15 @@
 
 [**Try the live Foresight demo →**](https://foresight-kazii.vercel.app/)
 
+## Screenshots
+
+These views use the synthetic demo project. Click any image to view it at full size.
+
+| Project dashboard | Delivery and workload |
+|---|---|
+| [![Project dashboard with health score, recommended actions, and predicted task risks](docs/screenshots/dashboard.png)](docs/screenshots/dashboard.png)<br>*Health, recommendations, and delay-risk overview.* | [![Delivery trends, team workload, and upcoming task deadlines](docs/screenshots/delivery-workload.png)](docs/screenshots/delivery-workload.png)<br>*Workload balance alongside delivery trends and deadlines.* |
+| **Task board**<br>[![Task board organized by status with task-level delay risk](docs/screenshots/task-board.png)](docs/screenshots/task-board.png)<br>*Tasks grouped by workflow status with predicted risk.* | **Team workload**<br>[![Team workload compared with capacity, including overload and balance indicators](docs/screenshots/team-workload.png)](docs/screenshots/team-workload.png)<br>*Capacity and workload balance across the team.* |
+
 Most project tools tell you **what is happening**. Foresight also estimates **what is likely to happen next and why**:
 it predicts which tasks will miss their deadline, explains each prediction in plain language, scores project health
 with a documented formula, detects workload imbalance, and recommends concrete actions — simulating each action with
